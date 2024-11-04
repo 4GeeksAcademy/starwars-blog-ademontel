@@ -1,0 +1,7 @@
+.dropdown-menu[data-bs-popper]{
+    right: 0 !important;
+}
+
+.navbar{
+    background: rgba(255, 255, 255, .5)
+}

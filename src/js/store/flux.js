@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -12,33 +14,70 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			people: [
+
+			],
+			planets: [
+
+			],
+			vehicles: [
+
+			],
+			details: [
+
+			],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getPeople: async () => {
+				try {
+					const resp = await fetch("https://www.swapi.tech/api/people");
+					const data = await resp.json();
+					console.log(data);
+					setStore({ people: data.results });
+				} catch (error) {
+					console.error("Error importando los personajes:", error);
+				}
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			getPlanets: async () => {
+				try {
+					const resp = await fetch("https://www.swapi.tech/api/planets");
+					const data = await resp.json();
+					console.log(data);
+					setStore({ planets: data.results });
+				} catch (error) {
+					console.error("Error importando planetas:", error);
+				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+			getVehicles: async () => {
+				try {
+					const resp = await fetch("https://www.swapi.tech/api/vehicles/");
+					const data = await resp.json();
+					console.log(data);
+					setStore({ vehicles: data.results });
+				} catch (error) {
+					console.error("Error importando vehículos:", error);
+				}
+			},
+			getDetails: async (uid) => {
+				try {
+					const resp = await fetch(`https://www.swapi.tech/api/people/${uid}`);
+					const data = await resp.json();
+					console.log(data);
+			
+					if (data.result) {
+						const characterDetails = data.result.properties;
+						const currentDetails = getStore().details;
+						setStore({ details: { ...currentDetails, [uid]: characterDetails } }); // Guardamos cada personaje por uid
+					} else {
+						console.error("No se encontraron detalles para el personaje.");
+					}
+				} catch (error) {
+					console.error("Error importando los detalles del personaje:", error);
+				}
+			},			
 			}
-		}
 	};
 };
 
