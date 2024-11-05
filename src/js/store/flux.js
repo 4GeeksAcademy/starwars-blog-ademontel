@@ -27,6 +27,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			details: [
 
 			],
+			planetDetails: [
+
+			],
+			vehicleDetails: [
+
+			],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -53,8 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getVehicles: async () => {
 				try {
 					const resp = await fetch("https://www.swapi.tech/api/vehicles/");
-					const data = await resp.json();
-					console.log(data);
+					const data = await resp.json();	
 					setStore({ vehicles: data.results });
 				} catch (error) {
 					console.error("Error importando vehículos:", error);
@@ -63,20 +68,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getDetails: async (uid) => {
 				try {
 					const resp = await fetch(`https://www.swapi.tech/api/people/${uid}`);
-					const data = await resp.json();
-					console.log(data);
-			
-					if (data.result) {
+					const data = await resp.json();			
+					if (data.result) { 
 						const characterDetails = data.result.properties;
 						const currentDetails = getStore().details;
-						setStore({ details: { ...currentDetails, [uid]: characterDetails } }); // Guardamos cada personaje por uid
+						setStore({ details: { ...currentDetails, [uid]: characterDetails } });
 					} else {
 						console.error("No se encontraron detalles para el personaje.");
 					}
 				} catch (error) {
 					console.error("Error importando los detalles del personaje:", error);
 				}
-			},			
+			},
+			getPlanetDetails: async (uid) => {
+				try {
+					const resp = await fetch(`https://www.swapi.tech/api/planets/${uid}`);
+					const data = await resp.json();			
+					if (data.result) { 
+						const planetDetails = data.result.properties;
+						const currentPlanetDetails = getStore().planetDetails;
+						setStore({ planetDetails: { ...currentPlanetDetails, [uid]: planetDetails } });
+					} else {
+						console.error("No se encontraron detalles para el planeta.");
+					}
+				} catch (error) {
+					console.error("Error importando los detalles del planeta:", error);
+				}
+			},	
+			getVehicleDetails: async (uid) => {
+				try {
+					const resp = await fetch(`https://www.swapi.tech/api/vehicles/${uid}`);
+					const data = await resp.json();			
+					if (data.result) { 
+						const vehicleDetails = data.result.properties;
+						const currentVehicleDetails = getStore().vehicleDetails;
+						setStore({ vehicleDetails: { ...currentVehicleDetails, [uid]: vehicleDetails } });
+					} else {
+						console.error("No se encontraron detalles para el vehículo.");
+					}
+				} catch (error) {
+					console.error("Error importando los detalles del vehículo:", error);
+				}
+			},				
 			}
 	};
 };

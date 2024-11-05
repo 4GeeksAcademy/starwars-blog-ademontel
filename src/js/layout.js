@@ -5,7 +5,9 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
-import  CharacterView  from './views/characterView.js';
+import DetailedView  from './views/detailedView.js';
+import PlanetView from "./views/planetView.js";
+import VehicleView from "./views/vehicleView.js";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -25,9 +27,20 @@ const Layout = () => {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/demo" element={<Demo />} />
-						<Route path="/characterView/:uid" element={<CharacterView />} />
+						<Route path="/detailedView/:uid" element={<DetailedView />} />
+						<Route path="/planetView/:uid" element={<PlanetView />} />
+						<Route path="/vehicleView/:uid" element={<VehicleView />} />
 						<Route path="/single/:theid" element={<Single />} />
-						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route path="*" element={							
+							<div className="container-fluid position-relative text-center p-0">
+								<img className="img-fluid w-100" src="https://lumiere-a.akamaihd.net/v1/images/databank_jedimindtrick_01_169_a491266d.jpeg?region=0%2C0%2C1560%2C878" alt="404 Error" />
+								<div style={{"margin-top":"65px"}} className="position-absolute top-0 start-50 translate-middle-x w-75 bg-dark bg-opacity-50 text-white p-3 rounded">
+									<h1>Error 404:</h1>
+									<h1>This isn't the page you are looking for.</h1>
+								</div>
+							</div>							
+							} 
+						/>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

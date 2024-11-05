@@ -5,3 +5,11 @@
 .navbar{
     background: rgba(255, 255, 255, .5)
 }
+
+.col-2{
+    border: 1px solid black;
+}
+
+h2,tr {
+    color: #dc3b4c;
+}

@@ -12,11 +12,10 @@ export const Home = () => {
 		actions.getPeople();
 		actions.getPlanets();
 		actions.getVehicles();
-		actions.getDetails();
 	}, []);
 
 	return (
-		<div className="text-center mt-5">
+		<div style={{"margin-top":"62px"}} className="text-center">
 			<h1>Star Wars BLOG Agus</h1>
 
 			<h2>Characters</h2>

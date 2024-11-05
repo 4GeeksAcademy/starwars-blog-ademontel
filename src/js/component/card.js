@@ -17,15 +17,15 @@ const Card = (props) => {
             <img src={urlImg} className="card-img-top" alt={props.uid} />
             <div className="card-body">
                 <h4 className="card-title">{props.name}</h4>
-                <p className="card-text text-start">Gender: {characterDetails?.gender}</p>
-                <p className="card-text text-start">Hair Color: {characterDetails?.hair_color}</p>
-                <p className="card-text text-start">Eye Color: {characterDetails?.eye_color}</p>
+                <p className="card-text text-start"><strong>Gender: </strong>{characterDetails?.gender}</p>
+                <p className="card-text text-start"><strong>Hair Color: </strong>{characterDetails?.hair_color}</p>
+                <p className="card-text text-start"><strong>Eye Color: </strong>{characterDetails?.eye_color}</p>
             </div>
             <div className="d-flex justify-content-between mx-2">
                 <button
                     type="button"
-                    className="btn btn-success"
-                    onClick={() => navigate("/characterView/" + props.uid)}
+                    className="btn btn-outline-primary"
+                    onClick={() => navigate("/detailedView/" + props.uid)}
                 >
                     Learn More
                 </button>
