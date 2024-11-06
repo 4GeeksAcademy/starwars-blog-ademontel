@@ -14,7 +14,7 @@ export const Navbar = () => {
 					</Link>
 					<div className="dropdown">
 						<button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-							Favorites
+							Favorites {store.favorites.length}
 						</button>
 						<ul className="dropdown-menu dropdown-menu-end">
 							{store.favorites.map((item) => (
