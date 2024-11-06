@@ -13,7 +13,7 @@ const PlanetView = () => {
     }, [uid, store.planetDetails]);
 
     return (
-    <div style={{"margin-top":"65px"}} className="container">
+    <div style={{marginTop:"65px"}} className="container">
         {planetDetails ? (
         <>
             <div className="card mb-3" style={{ maxWidth: "800px", margin: "0 auto" }}>

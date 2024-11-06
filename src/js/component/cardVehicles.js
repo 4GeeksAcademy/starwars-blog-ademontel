@@ -7,6 +7,7 @@ const urlImg = `https://starwars-visualguide.com/assets/img/vehicles/${props.uid
 const { store, actions } = useContext(Context);
 const navigate = useNavigate();
 const vehicleDetails = store.vehicleDetails[props.uid];
+const isFavorite = store.favorites.some(fav => fav.uid === props.uid);
 
 useEffect(() => {
     actions.getVehicleDetails(props.uid); 
@@ -28,8 +29,15 @@ useEffect(() => {
                 >
                     Learn More
                 </button>
-                <button type="button" className="btn btn-outline-warning">
-                    <i className="fa-regular fa-heart"></i>
+                <button
+                    type="button"
+                    className="btn btn-outline-warning"
+                    onClick={() => {
+                        actions.addFavorite(props);
+                    }
+                    }
+                >
+                    <i className={`fa-heart ${isFavorite ? "fa-solid" : "fa-regular"}`}></i>
                 </button>
             </div>
         </div>

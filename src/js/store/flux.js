@@ -15,24 +15,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			people: [
-
-			],
-			planets: [
-
-			],
-			vehicles: [
-
-			],
-			details: [
-
-			],
-			planetDetails: [
-
-			],
-			vehicleDetails: [
-
-			],
+			people: [],
+			planets: [],
+			vehicles: [],
+			details: [],
+			planetDetails: [],
+			vehicleDetails: [],
+			favorites: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -109,8 +98,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error("Error importando los detalles del vehículo:", error);
 				}
-			},				
-			}
+			},
+			addFavorite: (fav) => { //no usar obj por defecto
+				const store = getStore();
+				const result = store.favorites.some((item) => item.name == fav.name) //some() devuelve un booleano
+				if (result){
+					const updatedFavorites = store.favorites.filter((item) => item.name !== fav.name); 
+					setStore({
+						favorites: updatedFavorites
+					})
+				} else {
+					setStore({
+						favorites: [...store.favorites, fav]
+					})
+				}
+			},			
+		}
 	};
 };
 

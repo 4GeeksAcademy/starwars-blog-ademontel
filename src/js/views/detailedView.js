@@ -13,7 +13,7 @@ const DetailedView = () => {
     }, [uid, store.details]);
 
     return (
-    <div style={{"margin-top":"65px"}} className="container">
+    <div style={{marginTop:"65px"}} className="container">
         {details ? (
         <>
             <div className="card mb-3" style={{ maxWidth: "800px", margin: "0 auto" }}>

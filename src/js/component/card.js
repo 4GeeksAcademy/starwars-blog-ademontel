@@ -6,6 +6,7 @@ const Card = (props) => {
     const urlImg = `https://starwars-visualguide.com/assets/img/characters/${props.uid}.jpg`;
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const isFavorite = store.favorites.some(fav => fav.uid === props.uid);
 
     useEffect(() => {
         actions.getDetails(props.uid); // Obtener los detalles específicos para este uid
@@ -29,8 +30,15 @@ const Card = (props) => {
                 >
                     Learn More
                 </button>
-                <button type="button" className="btn btn-outline-warning">
-                    <i className="fa-regular fa-heart"></i>
+                <button
+                    type="button"
+                    className="btn btn-outline-warning"
+                    onClick={() => {
+                        actions.addFavorite(props);
+                    }
+                    }
+                >
+                    <i className={`fa-heart ${isFavorite ? "fa-solid" : "fa-regular"}`}></i>
                 </button>
             </div>
         </div>

@@ -15,7 +15,7 @@ export const Home = () => {
 	}, []);
 
 	return (
-		<div style={{"margin-top":"62px"}} className="text-center">
+		<div style={{marginTop:"62px"}} className="text-center">
 			<h1>Star Wars BLOG Agus</h1>
 
 			<h2>Characters</h2>

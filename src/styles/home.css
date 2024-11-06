@@ -13,3 +13,7 @@
 h2,tr {
     color: #dc3b4c;
 }
+
+.fa-trash:hover{
+    color: red;
+}
